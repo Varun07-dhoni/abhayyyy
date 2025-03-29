@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300&display=swap');
+        
+        :root {
+            --gold: #D4AF37;
+            --dark-bg: #121212;
+            --card-bg: #1E1E1E;
+            --text-light: #F5F5F5;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: var(--dark-bg);
+            font-family: 'Playfair Display', serif;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+        
+        .card-container {
+            position: relative;
+            width: 380px;
+            height: 600px;
+            transform-style: preserve-3d;
+            transition: transform 1.2s ease;
+            cursor: pointer;
+        }
+        
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+            box-sizing: border-box;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+        
+        .front {
+            background: linear-gradient(135deg, #2c3e50, #1a1a2e);
+            z-index: 2;
+            transform: rotateY(0deg);
+            border: 1px solid var(--gold);
+            justify-content: center;
+        }
+        
+        .inside {
+            background: var(--card-bg);
+            z-index: 1;
+            transform: rotateY(180deg);
+            border: 1px solid var(--gold);
+            padding-top: 30px;
+        }
+        
+        .card-container.open {
+            transform: rotateY(180deg);
+        }
+        
+        /* PHOTO FRAME - NOW VISIBLE */
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            overflow: hidden;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block; /* Ensures image is visible */
+        }
+        
+        .birthday-title {
+            font-size: 36px;
+            color: var(--gold);
+            margin: 10px 0;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .wish-text {
+            color: var(--text-light);
+            line-height: 1.8;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: 16px;
+            max-width: 280px;
+            margin: 15px 0;
+        }
+        
+        .signature {
+            margin-top: 20px;
+            font-style: italic;
+            color: var(--gold);
+            font-size: 18px;
+            text-align: center;
+        }
+        
+        .click-hint {
+            position: absolute;
+            bottom: 30px;
+            color: rgba(212, 175, 55, 0.7);
+            font-size: 14px;
+            animation: pulse 2s infinite;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container" id="card">
+        <div class="page front">
+            <div style="font-size: 24px; color: var(--gold); margin-bottom: 30px; font-weight: 700;">For My Favorite Person</div>
+            <div style="font-size: 80px; margin: 20px 0; color: var(--gold);">✧</div>
+            <div class="click-hint">Tap to open</div>
+        </div>
+        
+        <div class="page inside">
+            <!-- PHOTO FRAME - CHOOSE ONE OF THESE OPTIONS -->
+            
+            <!-- OPTION 1: Use a direct image URL -->
+            <div class="photo-frame">
+                <img src="shree.jpg.jpg" alt="Beautiful You">
+            </div>
+            
+            <!-- OPTION 2: Use a local image (save both files in same folder) -->
+            <!--
+            <div class="photo-frame">
+                <img src="her-photo.jpg" alt="Beautiful You">
+            </div>
+            -->
+            
+            <!-- OPTION 3: Use Base64 encoded image (no file needed) -->
+            <!--
+            <div class="photo-frame">
+                <img src="shree.jpg.jpg" alt="Beautiful You">
+            </div>
+            -->
+            
+            <div class="birthday-title">Happy Birthday!</div>
+            
+            <div class="wish-text">
+                To the most beautiful woman I know,<br>
+                may your special day be filled with<br>
+                joy, love, and wonderful moments.
+            </div>
+            
+            <div class="signature">
+                Lots of love to you💖 ,<br>
+            Shree🎀
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Card interaction
+        const card = document.getElementById('card');
+        card.addEventListener('click', function() {
+            this.classList.toggle('open');
+        });
+        
+        // Mobile touch support
+        card.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            this.classList.toggle('open');
+        }, { passive: false });
+    </script>
+</body>
+</html>
